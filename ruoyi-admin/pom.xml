@@ -60,11 +60,11 @@
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-spider</artifactId>
             <version>3.8.6</version>
-            <scope>compile</scope>
         </dependency>
 
     </dependencies>

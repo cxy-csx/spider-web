@@ -8,10 +8,9 @@
         <version>3.8.6</version>
     </parent>
 
-    <groupId>com.ruoyi</groupId>
     <artifactId>ruoyi-spider</artifactId>
     <version>3.8.6</version>
-    <name>spider</name>
+    <name>ruoyi-spider</name>
 
     <description>spider</description>
 

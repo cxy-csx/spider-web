@@ -28,7 +28,6 @@ public class RuoYiApplication
                 " |  |  \\    /  \\      /           \n" +
                 " ''-'   `'-'    `-..-'              ");
 
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String result = encoder.encode("qwe@Go!");
         System.out.println(result);
