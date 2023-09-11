@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.spider.mapper.XhsHomeFeedRecommendMapper">
+    
+    <resultMap type="com.ruoyi.spider.domain.XhsHomeFeedRecommend" id="XhsHomeFeedRecommendResult">
+        <result property="id"    column="id"    />
+        <result property="noteId"    column="note_id"    />
+        <result property="noteCover"    column="note_cover"    />
+        <result property="noteTitle"    column="note_title"    />
+        <result property="noteUserId"    column="note_user_id"    />
+        <result property="noteUserNickname"    column="note_user_nickname"    />
+        <result property="noteUserAvatar"    column="note_user_avatar"    />
+        <result property="noteLikeCount"    column="note_like_count"    />
+    </resultMap>
+
+    <sql id="selectXhsHomeFeedRecommendVo">
+        select id, note_id, note_cover, note_title, note_user_id, note_user_nickname, note_user_avatar, note_like_count from t_xhs_homefeed_recommend
+    </sql>
+
+    <select id="selectXhsHomeFeedRecommendList" parameterType="com.ruoyi.spider.domain.XhsHomeFeedRecommend" resultMap="XhsHomeFeedRecommendResult">
+        <include refid="selectXhsHomeFeedRecommendVo"/>
+        <where>  
+            <if test="noteId != null  and noteId != ''"> and note_id like concat('%', #{noteId}, '%')</if>
+            <if test="noteCover != null  and noteCover != ''"> and note_cover = #{noteCover}</if>
+            <if test="noteTitle != null  and noteTitle != ''"> and note_title like concat('%', #{noteTitle}, '%')</if>
+            <if test="noteUserId != null  and noteUserId != ''"> and note_user_id = #{noteUserId}</if>
+            <if test="noteUserNickname != null  and noteUserNickname != ''"> and note_user_nickname like concat('%', #{noteUserNickname}, '%')</if>
+            <if test="noteUserAvatar != null  and noteUserAvatar != ''"> and note_user_avatar = #{noteUserAvatar}</if>
+            <if test="noteLikeCount != null  and noteLikeCount != ''"> and note_like_count like concat('%', #{noteLikeCount}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectXhsHomeFeedRecommendById" parameterType="Long" resultMap="XhsHomeFeedRecommendResult">
+        <include refid="selectXhsHomeFeedRecommendVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertXhsHomeFeedRecommend" parameterType="com.ruoyi.spider.domain.XhsHomeFeedRecommend" useGeneratedKeys="true" keyProperty="id">
+        insert into t_xhs_homefeed_recommend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="noteId != null">note_id,</if>
+            <if test="noteCover != null">note_cover,</if>
+            <if test="noteTitle != null">note_title,</if>
+            <if test="noteUserId != null">note_user_id,</if>
+            <if test="noteUserNickname != null">note_user_nickname,</if>
+            <if test="noteUserAvatar != null">note_user_avatar,</if>
+            <if test="noteLikeCount != null">note_like_count,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="noteId != null">#{noteId},</if>
+            <if test="noteCover != null">#{noteCover},</if>
+            <if test="noteTitle != null">#{noteTitle},</if>
+            <if test="noteUserId != null">#{noteUserId},</if>
+            <if test="noteUserNickname != null">#{noteUserNickname},</if>
+            <if test="noteUserAvatar != null">#{noteUserAvatar},</if>
+            <if test="noteLikeCount != null">#{noteLikeCount},</if>
+         </trim>
+    </insert>
+
+    <update id="updateXhsHomeFeedRecommend" parameterType="com.ruoyi.spider.domain.XhsHomeFeedRecommend">
+        update t_xhs_homefeed_recommend
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="noteId != null">note_id = #{noteId},</if>
+            <if test="noteCover != null">note_cover = #{noteCover},</if>
+            <if test="noteTitle != null">note_title = #{noteTitle},</if>
+            <if test="noteUserId != null">note_user_id = #{noteUserId},</if>
+            <if test="noteUserNickname != null">note_user_nickname = #{noteUserNickname},</if>
+            <if test="noteUserAvatar != null">note_user_avatar = #{noteUserAvatar},</if>
+            <if test="noteLikeCount != null">note_like_count = #{noteLikeCount},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteXhsHomeFeedRecommendById" parameterType="Long">
+        delete from t_xhs_homefeed_recommend where id = #{id}
+    </delete>
+
+    <delete id="deleteXhsHomeFeedRecommendByIds" parameterType="String">
+        delete from t_xhs_homefeed_recommend where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
