@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.spider.mapper.BossPostMapper">
+    
+    <resultMap type="BossPost" id="TBossPostResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="salary"    column="salary"    />
+        <result property="experience"    column="experience"    />
+        <result property="skill"    column="skill"    />
+        <result property="degree"    column="degree"    />
+        <result property="city"    column="city"    />
+        <result property="area"    column="area"    />
+        <result property="company"    column="company"    />
+        <result property="logo"    column="logo"    />
+        <result property="industry"    column="industry"    />
+        <result property="scale"    column="scale"    />
+        <result property="jobId"    column="job_id"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectTBossPostVo">
+        select id, name, salary, experience, skill, degree, city, area, company, logo, industry, scale, job_id, create_time from t_boss_post
+    </sql>
+
+    <select id="selectTBossPostList" parameterType="BossPost" resultMap="TBossPostResult">
+        <include refid="selectTBossPostVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="salary != null  and salary != ''"> and salary = #{salary}</if>
+            <if test="experience != null  and experience != ''"> and experience = #{experience}</if>
+            <if test="skill != null  and skill != ''"> and skill = #{skill}</if>
+            <if test="degree != null  and degree != ''"> and degree = #{degree}</if>
+            <if test="city != null  and city != ''"> and city = #{city}</if>
+            <if test="area != null  and area != ''"> and area = #{area}</if>
+            <if test="company != null  and company != ''"> and company = #{company}</if>
+            <if test="logo != null  and logo != ''"> and logo = #{logo}</if>
+            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
+            <if test="scale != null  and scale != ''"> and scale = #{scale}</if>
+            <if test="jobId != null  and jobId != ''"> and job_id = #{jobId}</if>
+        </where>
+    </select>
+    
+    <select id="selectTBossPostById" parameterType="Long" resultMap="TBossPostResult">
+        <include refid="selectTBossPostVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTBossPost" parameterType="BossPost" useGeneratedKeys="true" keyProperty="id">
+        insert into t_boss_post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="salary != null">salary,</if>
+            <if test="experience != null">experience,</if>
+            <if test="skill != null">skill,</if>
+            <if test="degree != null">degree,</if>
+            <if test="city != null">city,</if>
+            <if test="area != null">area,</if>
+            <if test="company != null">company,</if>
+            <if test="logo != null">logo,</if>
+            <if test="industry != null">industry,</if>
+            <if test="scale != null">scale,</if>
+            <if test="jobId != null">job_id,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="salary != null">#{salary},</if>
+            <if test="experience != null">#{experience},</if>
+            <if test="skill != null">#{skill},</if>
+            <if test="degree != null">#{degree},</if>
+            <if test="city != null">#{city},</if>
+            <if test="area != null">#{area},</if>
+            <if test="company != null">#{company},</if>
+            <if test="logo != null">#{logo},</if>
+            <if test="industry != null">#{industry},</if>
+            <if test="scale != null">#{scale},</if>
+            <if test="jobId != null">#{jobId},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTBossPost" parameterType="BossPost">
+        update t_boss_post
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="salary != null">salary = #{salary},</if>
+            <if test="experience != null">experience = #{experience},</if>
+            <if test="skill != null">skill = #{skill},</if>
+            <if test="degree != null">degree = #{degree},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="area != null">area = #{area},</if>
+            <if test="company != null">company = #{company},</if>
+            <if test="logo != null">logo = #{logo},</if>
+            <if test="industry != null">industry = #{industry},</if>
+            <if test="scale != null">scale = #{scale},</if>
+            <if test="jobId != null">job_id = #{jobId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTBossPostById" parameterType="Long">
+        delete from t_boss_post where id = #{id}
+    </delete>
+
+    <delete id="deleteTBossPostByIds" parameterType="String">
+        delete from t_boss_post where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
