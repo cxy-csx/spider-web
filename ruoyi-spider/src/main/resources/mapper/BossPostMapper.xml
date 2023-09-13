@@ -29,16 +29,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTBossPostVo"/>
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="salary != null  and salary != ''"> and salary = #{salary}</if>
-            <if test="experience != null  and experience != ''"> and experience = #{experience}</if>
+            <if test="salary != null  and salary != ''"> and salary like concat('%', #{salary}, '%')</if>
+            <if test="experience != null  and experience != ''"> and experience like concat('%', #{experience}, '%')</if>
             <if test="skill != null  and skill != ''"> and skill = #{skill}</if>
-            <if test="degree != null  and degree != ''"> and degree = #{degree}</if>
-            <if test="city != null  and city != ''"> and city = #{city}</if>
-            <if test="area != null  and area != ''"> and area = #{area}</if>
-            <if test="company != null  and company != ''"> and company = #{company}</if>
+            <if test="degree != null  and degree != ''"> and degree like concat('%', #{degree}, '%')</if>
+            <if test="city != null  and city != ''"> and city like concat('%', #{city}, '%')</if>
+            <if test="area != null  and area != ''"> and area like concat('%', #{area}, '%')</if>
+            <if test="company != null  and company != ''"> and company like concat('%', #{company}, '%')</if>
             <if test="logo != null  and logo != ''"> and logo = #{logo}</if>
-            <if test="industry != null  and industry != ''"> and industry = #{industry}</if>
-            <if test="scale != null  and scale != ''"> and scale = #{scale}</if>
+            <if test="industry != null  and industry != ''"> and industry like concat('%', #{industry}, '%')</if>
+            <if test="scale != null  and scale != ''"> and scale like concat('%', #{scale}, '%')</if>
             <if test="jobId != null  and jobId != ''"> and job_id = #{jobId}</if>
         </where>
     </select>

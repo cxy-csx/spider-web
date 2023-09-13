@@ -17,22 +17,22 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="工作经验" prop="experience">
-        <el-input
-          v-model="queryParams.experience"
-          placeholder="请输入工作经验"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="专业技能" prop="skill">
-        <el-input
-          v-model="queryParams.skill"
-          placeholder="请输入专业技能"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="工作经验" prop="experience">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.experience"-->
+<!--          placeholder="请输入工作经验"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="专业技能" prop="skill">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.skill"-->
+<!--          placeholder="请输入专业技能"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
       <el-form-item label="学历" prop="degree">
         <el-input
           v-model="queryParams.degree"
@@ -89,14 +89,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="岗位标识" prop="jobId">
-        <el-input
-          v-model="queryParams.jobId"
-          placeholder="请输入岗位标识"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="岗位标识" prop="jobId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.jobId"-->
+<!--          placeholder="请输入岗位标识"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -143,7 +143,7 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:post:export']"
+          v-hasPermi="['spider:post:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -394,7 +394,7 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/post/export', {
+      this.download('spider/post/export', {
         ...this.queryParams
       }, `post_${new Date().getTime()}.xlsx`)
     }
