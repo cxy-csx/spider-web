@@ -14,7 +14,7 @@ with sync_playwright() as playwright:
     browser_context.add_cookies([
         {'name': 'web_session', 'value': "030037a233666a705be6527478224a0acf37ef", 'domain': ".xiaohongshu.com",
          'path': "/"},
-        {'name': 'a1', 'value': "1888f578fdbj9agla4nstg5deepyty1rukr2fljaz50000388892", 'domain': ".xiaohongshu.com",
+        {'name': 'a1', 'value': "18a88c3c1df8trm7aa3ito7f084sy9vm8593xftlv50000453089", 'domain': ".xiaohongshu.com",
          'path': "/"}]
     )
     sleep(2)
@@ -37,7 +37,7 @@ with sync_playwright() as playwright:
     x_s = dict(encrypt_params)['X-s']
 
     cookies = {
-        'a1': '1888f578fdbj9agla4nstg5deepyty1rukr2fljaz50000388892',
+        'a1': '18a88c3c1df8trm7aa3ito7f084sy9vm8593xftlv50000453089',
         'web_session': '030037a233666a705be6527478224a0acf37ef'
     }
 

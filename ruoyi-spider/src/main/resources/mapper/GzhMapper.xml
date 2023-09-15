@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.spider.mapper.GzhMapper">
+    
+    <resultMap type="com.ruoyi.spider.domain.Gzh" id="TGzhResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="publicTime"    column="public_time"    />
+        <result property="link"    column="link"    />
+        <result property="readCount"    column="read_count"    />
+        <result property="likeCount"    column="like_count"    />
+    </resultMap>
+
+    <sql id="selectTGzhVo">
+        select id, title, public_time, link, read_count, like_count from t_gzh
+    </sql>
+
+    <select id="selectTGzhList" parameterType="com.ruoyi.spider.domain.Gzh" resultMap="TGzhResult">
+        <include refid="selectTGzhVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title like CONCAT('%', #{title} , '%') </if>
+            <if test="publicTime != null "> and public_time = #{publicTime}</if>
+            <if test="link != null  and link != ''"> and link = #{link}</if>
+            <if test="readCount != null  and readCount != ''"> and read_count like CONCAT('%', #{readCount} , '%')</if>
+            <if test="likeCount != null  and likeCount != ''"> and like_count like CONCAT('%', #{likeCount} , '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTGzhById" parameterType="Long" resultMap="TGzhResult">
+        <include refid="selectTGzhVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTGzh" parameterType="com.ruoyi.spider.domain.Gzh" useGeneratedKeys="true" keyProperty="id">
+        insert into t_gzh
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="publicTime != null">public_time,</if>
+            <if test="link != null">link,</if>
+            <if test="readCount != null">read_count,</if>
+            <if test="likeCount != null">like_count,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="publicTime != null">#{publicTime},</if>
+            <if test="link != null">#{link},</if>
+            <if test="readCount != null">#{readCount},</if>
+            <if test="likeCount != null">#{likeCount},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTGzh" parameterType="com.ruoyi.spider.domain.Gzh">
+        update t_gzh
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="publicTime != null">public_time = #{publicTime},</if>
+            <if test="link != null">link = #{link},</if>
+            <if test="readCount != null">read_count = #{readCount},</if>
+            <if test="likeCount != null">like_count = #{likeCount},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTGzhById" parameterType="Long">
+        delete from t_gzh where id = #{id}
+    </delete>
+
+    <delete id="deleteTGzhByIds" parameterType="String">
+        delete from t_gzh where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
