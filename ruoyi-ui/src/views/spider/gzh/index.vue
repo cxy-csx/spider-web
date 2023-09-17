@@ -96,7 +96,11 @@
     <el-table v-loading="loading" :data="gzhList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
 <!--      <el-table-column label="自增主键" align="center" prop="id" />-->
-      <el-table-column label="文章标题" align="center" prop="title" />
+      <el-table-column label="文章标题" align="center">
+        <template slot-scope="scope">
+          <el-link :href="scope.row.link" target="_blank" :underline="false">{{ scope.row.title }}</el-link>
+        </template>
+      </el-table-column>
 <!--      <el-table-column label="文章链接" align="center" prop="link" />-->
       <el-table-column label="阅读数" align="center" prop="readCount" />
       <el-table-column label="点赞数" align="center" prop="likeCount" />
@@ -301,7 +305,7 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/gzh/export', {
+      this.download('spider/gzh/export', {
         ...this.queryParams
       }, `gzh_${new Date().getTime()}.xlsx`)
     }

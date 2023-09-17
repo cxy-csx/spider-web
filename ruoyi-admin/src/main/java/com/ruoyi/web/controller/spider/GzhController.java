@@ -29,7 +29,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  */
 @RestController
 @RequestMapping("/spider/gzh")
-public class TGzhController extends BaseController
+public class GzhController extends BaseController
 {
     @Autowired
     private IGzhService gzhService;

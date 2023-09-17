@@ -21,9 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTGzhVo"/>
         <where>  
             <if test="title != null  and title != ''"> and title like CONCAT('%', #{title} , '%') </if>
-            <if test="publicTime != null "> and public_time = #{publicTime}</if>
+            <if test="publicTime != null "> and public_time >= #{publicTime}</if>
             <if test="link != null  and link != ''"> and link = #{link}</if>
-            <if test="readCount != null  and readCount != ''"> and read_count like CONCAT('%', #{readCount} , '%')</if>
+            <if test="readCount != null  and readCount != ''"> and read_count >= #{readCount}</if>
             <if test="likeCount != null  and likeCount != ''"> and like_count like CONCAT('%', #{likeCount} , '%')</if>
         </where>
     </select>
